@@ -2,17 +2,20 @@
 var rect = require('./rectangle');
 
 function solveRect(l, b) {
-    if (l < 0 || b < 0) {
-        console.log('Wrong dimensions!');
-    } else {
-        console.log(
-            'Area: ' +
-                rect.area(l, b) +
-                '\n' +
-                'Perimeter: ' +
-                rect.perimeter(l, b)
-        );
-    }
+    rect(l, b, (err, rectangle) => {
+        if (err) {
+            console.log('ERROR: ' + err.message);
+        } else {
+            console.log(
+                'Area: ' +
+                    rectangle.area(l, b) +
+                    '\n' +
+                    'Perimeter: ' +
+                    rectangle.perimeter(l, b)
+            );
+        }
+    });
+    console.log('This statement is called after rect()');
 }
 
-solveRect(2, 4);
+solveRect(-2, 4);
